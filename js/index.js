@@ -22,14 +22,12 @@ btnUp.addEventListener('click', () => {
 
     count++;
     duration.value = count;
-    return localStorage.setItem('duration', duration.value);
 });
 btnDown.addEventListener('click', () => {
     if(count < 0 || count === 0) return count = 0, duration.value = count;
 
     count--;
     duration.value = count;
-    return localStorage.setItem('duration', duration.value);
 });
 
 btnUp2.addEventListener('click', () => {
@@ -37,14 +35,12 @@ btnUp2.addEventListener('click', () => {
 
     count2++;
     durationPause.value = count2;
-    return localStorage.setItem('pause', durationPause.value);
 });
 btnDown2.addEventListener('click', () => {
-    if(count2 < 0 || count2 === 0) return count2 = 0, durationPause.value = count;
+    if(count2 < 0 || count2 === 0) return count2 = 0, durationPause.value = count2;
 
     count2--;
     durationPause.value = count2;
-    return localStorage.setItem('pause', durationPause.value);
 });
 
 
@@ -53,24 +49,30 @@ btnUp3.addEventListener('click', () => {
 
     count3++;
     session.value = count3;
-    return localStorage.setItem('session', session.value);
 });
 btnDown3.addEventListener('click', () => {
     if(count3 < 0 || count3 === 0) return count3 = 0, session.value = count3;
 
     count3--;
-    session.value = count;
-    return localStorage.setItem('session', session.value);
+    session.value = count3;
 });
 
 
 // ======= continue ========
 btnContinue.addEventListener('click', () => {
     if(title.value === '' || title.value === null || title.value === undefined) {
-        console.log(title)
-        title.value = 'Pomodoro'
+        title.value = 'Pomodoro';
+
+        localStorage.setItem('duration', duration.value);
+        localStorage.setItem('pause', durationPause.value);
+        localStorage.setItem('session', session.value);
+
         return localStorage.setItem('title', title.value);
     } else {
+        localStorage.setItem('duration', duration.value);
+        localStorage.setItem('pause', durationPause.value);
+        localStorage.setItem('session', session.value);
+
         return localStorage.setItem('title', title.value);
     }
 });
